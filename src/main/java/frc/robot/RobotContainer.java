@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -55,11 +56,11 @@ public class RobotContainer {
             () ->
                 m_drivetrain.arcadeDrive(
                     -m_driverController.getLeftY(), -m_driverController.getRightX()),
-            m_drivetrain));
+            m_drivetrain).withName("Arcade Drive"));
 
     /*Create an inline sequence to run when the operator presses and holds the A (green) button. Run the PrepareLaunch
      * command for 1 seconds and then run the LaunchNote command */
-    m_operatorController
+    m_driverController
         .a()
         .whileTrue(
             new PrepareLaunch(m_launcher)
@@ -69,7 +70,7 @@ public class RobotContainer {
 
     // Set up a binding to run the intake command while the operator is pressing and holding the
     // left Bumper
-    m_operatorController.leftBumper().whileTrue(m_launcher.getIntakeCommand());
+    m_driverController.leftBumper().whileTrue(m_launcher.getIntakeCommand());
   }
 
   /**
@@ -80,5 +81,10 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_drivetrain);
+  }
+
+    public void robotPeriodic(){
+  SmartDashboard.putData(m_launcher);
+  SmartDashboard.putData(m_drivetrain);
   }
 }
