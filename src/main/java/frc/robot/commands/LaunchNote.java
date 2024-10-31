@@ -42,6 +42,7 @@ public class LaunchNote extends Command {
     // There is nothing we need this command to do on each iteration. You could remove this method
     // and the default blank method
     // of the base class will run.
+
   }
 
   // Returns true when the command should end.
@@ -51,6 +52,7 @@ public class LaunchNote extends Command {
     // scheduler to end the command when the button is released.
     return false;
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
